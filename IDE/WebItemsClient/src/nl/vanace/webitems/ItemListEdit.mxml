@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:gui="nl.bransom.gui.*"
+		 horizontalScrollPolicy="off"
+		 verticalScrollPolicy="off"
+		 disabledOverlayAlpha="0.0"
+		 label="Items"
+		 enabled="{itemsetXml != null}"
+		 creationComplete="init()">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.utils.Base64Encoder;
+			
+			import nl.bransom.XmlUtils;
+			import nl.bransom.rest.RestClient;
+
+			[Bindable] public var restClient:RestClient;
+			[Bindable] public var itemsetXml:XML;
+
+			[Bindable] private var thumbnailHeight:Number = 120;
+			[Bindable] private var labelWidth:Number = 100;
+			[Bindable] private var buttonWidth:Number = 120;
+			[Bindable] private var imageCanvasSize:Number = 150;
+			[Bindable] private var previewContent:Boolean = false;
+			private var fileReference:FileReference;
+			
+			private function init():void {
+				BindingUtils.bindSetter(setItemsetXml, this, "itemsetXml");
+			}
+			private function setItemsetXml(itemsetXml:XML):void {
+				var type:String = XmlUtils.getElements(itemsetXml, 'type');
+				if (type == "") {
+					currentState = "TYPE_NONE";
+				} else {
+					currentState = "TYPE_" + type.toUpperCase();
+				}
+				if (itemsetXml == null) {
+					return;
+				}
+				if (XmlUtils.getTextContent(itemsetXml, "@reference") == "true") {
+					var itemsetId:String = XmlUtils.getTextContent(itemsetXml, "@id");
+					restClient.read("SITE", "itemset/" + itemsetId, null, setItemsetXml);
+				}
+			}
+			
+			private function createItem():void {
+				// reset the sort indices
+				updateItemSortIndices();
+				var selectedIndex:int = 0;
+				var sortIndex:String = "0";
+				if (tileList.selectedIndices.length > 0) {
+					selectedIndex = tileList.selectedIndices[0];
+					if (Number(selectedIndex) > 0) {
+						sortIndex = XmlUtils.getTextContent(XML(tileList.selectedItem), "sortIndex_itemset");
+					}
+				}
+				var xmlItem:XML = restClient.createEntityNode(itemsetXml, "item", selectedIndex);
+				restClient.setTextContent(xmlItem, "sortIndex_itemset", sortIndex);
+				restClient.setTextContent(xmlItem, "title", "geen_titel");
+				restClient.setTextContent(xmlItem, "subTitle", "");
+				restClient.setTextContent(xmlItem, "content", "");
+
+				// first refresh the tileList...
+				tileList.refresh();
+				// ...and then re-apply the sort indices
+				updateItemSortIndices();
+				tileList.selectedIndex = selectedIndex;
+				tileList.scrollToIndex(selectedIndex);
+			}
+
+			private function deleteItem():void {
+				var selectedIndex:int = tileList.selectedIndex;
+				if (restClient.deleteEntityNode(XML(tileList.selectedItem))) {
+					tileList.refresh();
+					if (selectedIndex >= tileList.dataProvider.length) {
+						selectedIndex--;
+					}
+					if (selectedIndex >= 0) {
+						tileList.selectedIndices = [selectedIndex];
+						tileList.scrollToIndex(selectedIndex);
+					}
+				}
+			}
+
+			private function sortItems():void {
+				// sort the xmlItems by their sortIndexField
+				var xmlChildren:XMLList = itemsetXml.children();
+				xmlChildren = XmlUtils.sortXmlList(xmlChildren, "sortIndex_itemset", Array.NUMERIC);
+				itemsetXml.setChildren(xmlChildren);
+			}
+
+			private function updateItemSortIndices():void {
+				// give all items their new sortIndex
+				var index:int = 1;
+				for each (var xmlItem:XML in tileList.getListCollection()) {
+					restClient.setTextContent(xmlItem, "sortIndex_itemset", String(index++));
+				}
+			}
+
+			private function chooseImageFile():void {
+				fileReference = new FileReference();
+				fileReference.addEventListener(Event.SELECT, fileReference_select);
+				fileReference.addEventListener(Event.COMPLETE, fileReference_complete);
+				var arr:Array = [];
+				arr.push(new FileFilter("Afbeeldingen", "*.gif;*.jpeg;*.jpg;*.png"));
+				fileReference.browse(arr);
+			}
+			private function fileReference_select(event:Event):void {
+				fileReference.load();
+			}
+			private function fileReference_complete(event:Event):void {
+				loadImage();
+			}
+
+			private function loadImage():void {
+				var base64Encoder:Base64Encoder = new Base64Encoder();
+				base64Encoder.insertNewLines = false;
+				base64Encoder.encodeBytes(fileReference.data);
+				var imageDataBase64:String = base64Encoder.flush();
+
+				var xmlImage:XML = imageGui.objectXml;
+				restClient.deleteEntityNode(xmlImage);
+				xmlImage = restClient.createEntityNode(XML(tileList.selectedItem), 'image');
+
+				restClient.setTextContent(xmlImage, "caption", fileReference.name.replace(/\.[^\.]*$/si, ""));
+				restClient.setTextContent(xmlImage, "mediatype", fileReference.name.replace(/.*\./si, ""));
+				restClient.setTextContent(xmlImage, "data", imageDataBase64);
+
+				imageGui.objectXml = xmlImage;
+			}
+			
+			private function deleteImage():void {
+				if (restClient.deleteEntityNode(imageGui.objectXml)) {
+					imageGui.objectXml = null;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:states>
+		<mx:State name="TYPE_NONE"/>
+		<mx:State name="TYPE_A"/>
+		<mx:State name="TYPE_B"/>
+		<mx:State name="TYPE_C"/>
+	</mx:states>
+
+	<mx:HBox width="100%" height="100%">
+		<mx:VBox width="30%" height="100%">
+			<!-- item list -->
+			<mx:HBox verticalAlign="middle" width="100%">
+				<mx:Label text="items" textAlign="right" width="100%" />
+				<mx:Button label="Creëren" enabled="{itemsetXml != null}" click="createItem()" />
+				<mx:Button label="Verwijderen" enabled="{tileList.selectedItem != null}" click="deleteItem()" />
+			</mx:HBox>
+			<gui:XmlTileList id="tileList" objectXml="{itemsetXml}" itemPropertyName="item"
+							 sortFunction="sortItems" orderChangedFunction="updateItemSortIndices" 
+							 itemRenderer="nl.vanace.webitems.ItemThumbnail" columnCount="1"
+							 columnWidth="{tileList.getScrollWidth()}" rowHeight="{thumbnailHeight}"
+							 width="100%" height="100%" />
+		</mx:VBox>
+
+		<mx:VBox width="70%" height="100%">
+			<mx:HBox width="100%">
+				<!-- title -->
+				<mx:Label text="titel" textAlign="right" width="{labelWidth}" />
+				<gui:XmlTextInput restClient="{restClient}" objectXml="{XML(tileList.selectedItem)}"
+								  propertyName="title" enabled="{tileList.selectedItem != null}"
+								  width="100%" />
+			</mx:HBox>
+			<mx:HBox width="100%" includeIn="TYPE_NONE,TYPE_C">
+				<!-- subTitle -->
+				<mx:Label text="subtitel" textAlign="right" width="{labelWidth}" />
+				<gui:XmlTextInput restClient="{restClient}" objectXml="{XML(tileList.selectedItem)}"
+								  propertyName="subTitle" enabled="{tileList.selectedItem != null}"
+								  width="100%" />
+			</mx:HBox>
+			<mx:HBox width="100%">
+				<!-- image -->
+				<mx:Label text="afbeelding" textAlign="right" width="{labelWidth}" />
+				<mx:Canvas width="{imageCanvasSize}" height="{imageCanvasSize}">
+					<gui:XmlImage objectXml="{XmlUtils.getElements(XML(tileList.selectedItem), 'image')[0]}"
+								  propertyName="data"
+								  toolTip="{XmlUtils.getTextContent(imageGui.objectXml, 'caption')}"
+								  width="100%" height="100%" id="imageGui" />
+					<mx:Label text="geen afbeelding" enabled="false" visible="{imageGui.objectXml == null}"
+							  textAlign="center" width="100%" height="100%" />
+				</mx:Canvas>
+				<mx:VBox width="{buttonWidth}">
+					<!-- image buttons -->
+					<mx:Button label="Wijzigen" enabled="{tileList.selectedItem != null}" click="chooseImageFile()"
+							   width="100%" />
+					<mx:Button label="Wissen" enabled="{imageGui.objectXml != null}" click="deleteImage()"
+							   width="100%" />
+				</mx:VBox>
+				<mx:Spacer width="100%" />
+				<mx:VBox height="100%" horizontalAlign="right" verticalAlign="bottom">
+					<mx:CheckBox label="HTML" id="previewToggle" selected="{previewContent}"
+								 enabled="{tileList.selectedItem != null}"
+								 change="previewContent = previewToggle.selected" />
+				</mx:VBox>
+			</mx:HBox>
+			<mx:HBox width="100%" height="100%">
+				<!-- content -->
+				<mx:Label text="inhoud" textAlign="right" width="{labelWidth}" />
+				<mx:Canvas width="100%" height="100%">
+					<gui:XmlTextArea restClient="{restClient}" objectXml="{XML(tileList.selectedItem)}"
+									 propertyName="content" id="contentTextArea" asCData="true"
+									 enabled="{tileList.selectedItem != null}" visible="{!previewContent}"
+									 width="100%" height="100%" />
+					<mx:TextArea htmlText="{contentTextArea.text}" editable="false" selectable="false"
+								 enabled="{contentTextArea.enabled}" backgroundAlpha="0.5"
+								 visible="{previewContent}" width="100%" height="100%" />
+				</mx:Canvas>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+</mx:VBox>

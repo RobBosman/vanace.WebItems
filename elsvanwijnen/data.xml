@@ -1,0 +1,219 @@
+<data>	
+	<settings>		
+		<width>950</width>
+		<height>530</height>
+		
+		<visibleItems>3</visibleItems>
+		<itemWidth>800</itemWidth>
+		<itemHeight>140</itemHeight>
+		<itemsHSpacing>15</itemsHSpacing>
+		<itemsVSpacing>15</itemsVSpacing>
+		
+		<arrowVSpacing>15</arrowVSpacing>
+		<showArrows>true</showArrows>
+		<showScrollbar>true</showScrollbar>
+		<scrollbarHeight>500</scrollbarHeight>
+		
+		<maxBlur>32</maxBlur>
+		<slideTime>0.5</slideTime>
+		
+		<autoPlay>false</autoPlay>
+		<autoPlayDelay>5</autoPlayDelay>
+		<pauseOnItemMouseOver>true</pauseOnItemMouseOver>
+		
+		<itemReflection>true</itemReflection>
+		<reflectionAlpha>30</reflectionAlpha>
+		<reflectionHeight>25</reflectionHeight>
+		<reflectionDistance>0</reflectionDistance>		
+	</settings>	
+	<news>		
+		<item>			
+			<image width="271" height="180">images/vogels.jpg</image>
+			<title><![CDATA[Vogels]]></title>
+		<subTitle><![CDATA[S. Diaz Miron]]></subTitle>
+			<content><![CDATA[ ‘Vogels zingen ook als de tak kraakt, want ze weten dat ze vleugels hebben.’
+ ]]></content>
+		<!--	<link> </link>
+			<linkTarget>_blank</linkTarget> -->
+		</item>
+		
+		<item>			
+			<image width="271" height="180">images/servant.jpg</image>
+			<title><![CDATA[Vergeten]]></title>
+		<subTitle><![CDATA[Albert Einstein]]></subTitle>
+			<content><![CDATA[The intuitive mind is a sacred gift
+and the rational mind is a faithful servant.
+We have created a society that
+honors the servant and has forgotten the gift.
+ ]]></content>
+		<!--	<link> </link>
+			<linkTarget>_blank</linkTarget> -->
+		</item>
+		
+		<item>			
+			<image width="271" height="180">images/justitia.jpg</image>
+			<title><![CDATA[Oordeel]]></title>
+		<subTitle><![CDATA[Marcelino Lopez]]></subTitle>
+			<content><![CDATA[Denken dat je weet wat goed is voor een ander
+is een van de grootste fouten die we maken in al onze contacten.
+Veel mensen zien hun waarheid als de waarheid en dringen hem daarom graag op aan anderen.<br>
+Proberen door de ogen van de ander naar de wereld te kijken
+voordat we een oordeel hebben over diens gedrag.]]></content>
+		<!--	<link> </link>
+			<linkTarget>_blank</linkTarget> -->
+		</item>
+		
+		<item>			
+			<image width="271" height="180">images/compassie.jpg</image>
+			<title><![CDATA[Compassie]]></title>
+		<subTitle><![CDATA[Marshall B. Rosenberg]]></subTitle>
+			<content><![CDATA[What I want in my life is compassion<br>
+a flow between myself and others<br>
+based on a mutual giving<br>
+from the heart]]></content>
+		<!--	<link> </link>
+			<linkTarget>_blank</linkTarget> -->
+		</item>
+		
+		<item>			
+			<image width="271" height="180">images/01.jpg</image>
+			<title><![CDATA[Wijs]]></title>
+		<subTitle><![CDATA[Andrew Cohen]]></subTitle>
+			<content><![CDATA[Wat een mens wijs maakt, is niet dat hij meer ervaring heeft dan anderen, maar dat hij meer aandacht aan zijn ervaringen schenkt dan anderen.]]></content>
+		<!--	<link> </link>
+			<linkTarget>_blank</linkTarget> -->
+		</item>
+<!--
+		<item>			
+			<image width="308" height="180">images/02.jpg</image>
+			<title><![CDATA[HTML formatting <b>bold</b> <i>italic</i> <font color="#4A92B4">color</font>]]></title>
+			<subTitle><![CDATA[Subtitle (<b>bold</b> / <i>italic</i> / <font color="#4A92B4"><font color="#4A92B4">color</font>)]]></subTitle>
+			<content><![CDATA[All text is HTML formatted ( <u><a href="#">hiperlink</a></u> / <b>bold</b> / <i>italic</i> / <font color="#4A92B4">color</font>) for maximum flexibility. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<title><![CDATA[This one doesn't have an image or an URL]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[<b><i>News will auto-scroll every 5 seconds and it will pause when you go over a news item. This can be configured via XML settings.</i></b> Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+		</item>
+		<item>			
+			<image width="271" height="180">images/03.jpg</image>
+			<title><![CDATA[]]></title>
+			<subTitle><![CDATA[]]></subTitle>
+			<content><![CDATA[<b><i><font color="#908040">You can leave the title and/or subtitle xml fields empty to remove them. You can use mousewheel to scroll text when over an item. You can use mousewheel outside the items area to scroll horizontally</font></i></b> Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="270" height="180">images/04.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="120" height="180">images/05.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>	
+		<item>			
+			<image width="271" height="180">images/01.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="308" height="180">images/02.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+		</item>
+		<item>			
+			<image width="271" height="180">images/03.jpg</image>
+			<title><![CDATA[]]></title>
+			<subTitle><![CDATA[]]></subTitle>
+			<content><![CDATA[<b><i><font color="#908040">You can leave the title and/or subtitle xml fields empty to remove them. You can use mousewheel to scroll text when over an item. You can use mousewheel outside the items area to scroll horizontally</font></i></b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="270" height="180">images/04.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="120" height="180">images/05.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>	
+		<item>			
+			<image width="271" height="180">images/01.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="271" height="180">images/03.jpg</image>
+			<title><![CDATA[]]></title>
+			<subTitle><![CDATA[]]></subTitle>
+			<content><![CDATA[<b><i><font color="#908040">You can leave the title and/or subtitle xml fields empty to remove them. You can use mousewheel to scroll text when over an item. You can use mousewheel outside the items area to scroll horizontally</font></i></b> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="270" height="180">images/04.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="120" height="180">images/05.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>	
+		<item>			
+			<image width="271" height="180">images/01.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		<item>			
+			<image width="271" height="180">images/03.jpg</image>
+			<title><![CDATA[Bank of America Posts Third-Quarter Loss]]></title>
+			<subTitle><![CDATA[16.05.2008 | 16:23 AM]]></subTitle>
+			<content><![CDATA[All text is HTML formatted for maximum flexibility. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et scelerisque ante. Phasellus hendrerit vulputate mi eget porta. Fusce at gravida diam. Etiam rutrum, erat nec volutpat mattis, enim augue laoreet.]]></content>
+			<link>http://www.some-external-link.org/</link>
+			<linkTarget>_blank</linkTarget>
+		</item>
+		-->
+	</news>	
+</data>

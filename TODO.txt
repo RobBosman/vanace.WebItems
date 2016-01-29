@@ -1,0 +1,45 @@
+verwijder alle items van itemsets van site 'bsolution'
+verwijder alle itemsets van site 'bsolution'
+publish site 'bsolution' met http://.../bransom/REST/webitems/site/59?publish=true
+database:
+	tabel 'image': verwijder kolom 'url'
+	tabel 'itemset': verwijder de foreign key 'FK_itemset_site'
+	tabel 'itemset': verwijder alle rijen met 'id_site' = 59 (bsolution)
+	tabel 'site': verwijder de volgende rijen:
+		2		2		improtheater
+		2		19		improtheater
+		46		46		elsvanwijnen
+		59		59		bsolution
+		59		115		acetest
+		59		119		bsolution
+		59		1063	weg
+		120		120		bsolution
+		132		132		
+		466		466		wielinga
+	als het goed is blijven dan over:
+		2		36		improtheater
+		46		118		elsvanwijnen
+		132		149		wielinga
+		1071	1071	vanace
+	tabel 'itemset': voeg de foreign key 'FK_itemset_site' toe ('itemset'.'id_site' -> 'site'.'id')
+	tabel '_entity': in definitie van 'site' de 'id_state' op NULL zetten en 'id_object' hernoemen naar 'id'
+	tabel '_entity': voeg de definitie van '_account' toe
+	tabel '_entity': voeg de definitie van '_access' toe
+	tabel '_entity': voeg de definitie van '_entity' toe ('id_object_key_name' = 'name')
+	tabel '_relationship': voeg de relatie van '_account' naar '_access' toe
+	tabel '_relationship': voeg de relatie van 'site' naar '_access' toe
+	tabel '_account': verwijder kolom 'role'
+	tabel '_account': voeg de volgende accounts toe:
+		marcoen
+		els
+		wielinga
+	nieuwe tabel '_access' aanmaken met kolommen 'id', 'id_account', 'entity' en 'id_object',
+		inclusief primary key op kolom 'id', twee foreign keys en een unique constraint op de kolommen 'id_account', 'entity' en 'id_object'
+	tabel '_access': voeg de volgende rijen toe ('id_account', 'entity', 'id_object'):
+		1		site	2
+		1		site	46
+		1		site	132
+		1		site	1071
+		2		site	2
+		3		site	46
+		4		site	132

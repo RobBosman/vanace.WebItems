@@ -1,0 +1,63 @@
+@namespace sp "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace gui "nl.bransom.gui.*";
+
+mx|Application {
+	background-gradient-colors: #fff, #888;
+	font-family: verdana;
+	font-size: 16pt;
+	padding-left: 10;
+	padding-right: 10;
+	padding-top: 10;
+	padding-bottom: 10;
+}
+mx|TextArea,
+mx|TileList,
+mx|Tree,
+gui|XmlImage {
+	border-style: inset;
+}
+gui|XmlTileList,
+gui|XmlTree,
+mx|TabNavigator {
+	background-alpha: 0.0;
+}
+gui|ErrorPopup {
+	border-color: #f00;
+}
+.status-control-bar {
+	color: #fff;
+	text-roll-over-color: #fff;
+}
+.status-control-bar-changed {
+	background-alpha: 0.75;
+	background-color: #f80;
+	color: #fff;
+	text-roll-over-color: #fff;
+}
+.debug-control-bar {
+	background-color: yellow;
+}
+.title {
+	font-size: 24pt;
+	font-weight: bold;
+}
+.version {
+	color: #bbb;
+	font-size: 9;
+}
+.item-thumbnail {
+	border-style: outset;
+	font-size: 14pt;
+}
+.item-thumbnail-image {
+	border-style: none;
+}
+.item-thumbnail-title {
+	font-size: 16pt;
+	font-weight: bold;
+}
+.error {
+	font-size: 20pt;
+	color: red;
+}

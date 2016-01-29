@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="library://ns.adobe.com/flex/halo" xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:itemeditor="nl.vanace.itemeditor.*"
+	horizontalAlign="center" verticalAlign="top" verticalScrollPolicy="off" horizontalScrollPolicy="off"
+	paddingTop="0" paddingBottom="15" paddingLeft="5" paddingRight="5"
+	width="170">
+	<itemeditor:CanvasImage url="{ItemServices.URL_PREFIX}{data.@picture}" toolTip="{data.@picture}"
+		width="70" height="70"/>
+	<mx:Text text="{data.@title}" selectable="false" textAlign="left" width="100%" styleName="itemThumbnailText"/>
+</mx:HBox>

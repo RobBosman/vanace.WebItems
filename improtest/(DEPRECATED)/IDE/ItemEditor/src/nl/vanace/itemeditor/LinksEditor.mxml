@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="library://ns.adobe.com/flex/halo" xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:itemeditor="nl.vanace.itemeditor.*"
+	implements="nl.vanace.itemeditor.AbstractEditor"
+	label="{XML_LABEL}"
+	paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	creationComplete="init()">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.ListBase;
+			import mx.events.CloseEvent;
+			import mx.managers.PopUpManager;
+
+			public static const XML_LABEL:String = "Links";
+			private static const ITEM_SOORT:String = "links";
+
+			private var itemServices:ItemServices;
+			private function init():void {
+				itemServices = new ItemServices(XML_LABEL, ITEM_SOORT, this);
+			}
+			public function getItemList():ListBase {
+				return itemList;
+			}
+			public function getXmlListColl():XMLListCollection {
+				return xmlListColl;
+			}
+			public function setXmlListColl(itemListColl:XMLListCollection) : void {
+				this.xmlListColl = itemListColl;
+			}
+			public function showSelectImageWindow() : void {
+				PopUpManager.addPopUp(selectImageWindow, itemList, true);
+				PopUpManager.centerPopUp(selectImageWindow);
+				imageViewer.show(ITEM_SOORT, XML(itemList.selectedItem));
+			}
+			private function selectImage_close(event:CloseEvent):void {
+				PopUpManager.removePopUp(selectImageWindow);
+				pictureDisplay.url = ItemServices.URL_PREFIX + itemList.selectedItem.@picture;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<mx:XMLListCollection id="xmlListColl"/>
+		<mx:TitleWindow id="selectImageWindow" title="Selecteer afbeelding" styleName="imageChooser"
+			showCloseButton="true" close="selectImage_close(event)" height="{height * 0.9}">
+			<itemeditor:ImageViewer id="imageViewer" hide="selectImage_close(null)"/>
+		</mx:TitleWindow>
+	</fx:Declarations>
+	
+	<mx:VBox width="100%" height="100%">
+		<mx:HorizontalList id="itemList" dataProvider="{xmlListColl}" itemRenderer="nl.vanace.itemeditor.ItemThumbnail"
+			dragMoveEnabled="true" dragEnabled="true" dropEnabled="true" dragComplete="xmlListColl.refresh()"
+			borderThickness="0" width="100%" height="100"/>
+		<mx:Spacer height="10"/>
+		<mx:HBox width="100%" height="100%">
+			<mx:VBox width="30%" height="100%">
+				<itemeditor:CanvasImage id="pictureDisplay" noImageText="(geen afbeelding)"
+					url="{ItemServices.URL_PREFIX}{itemList.selectedItem.@picture}"
+					toolTip="{itemList.selectedItem.@picture}" click="showSelectImageWindow()"
+					width="100%" height="100%" verticalAlign="top"/>
+				<mx:Button label="Afbeelding..." enabled="{itemList.selectedItem != null}"
+					click="showSelectImageWindow()" width="100%"/>
+			</mx:VBox>
+			<mx:VBox width="70%" height="100%">
+				<mx:TextInput text="{itemList.selectedItem.@url}" toolTip="URL van de site"
+					change="itemList.selectedItem.@url = event.target.text" width="100%"/>
+				<mx:TextInput text="{itemList.selectedItem.@title}" styleName="itemTitle" toolTip="Titel"
+					change="itemList.selectedItem.@title = event.target.text" width="100%"/>
+<!--
+				<mx:RichTextEditor htmlText="{itemList.selectedItem.description}" 
+					change="itemList.selectedItem.description = event.target.htmlText" width="100%" height="100%"/>
+-->
+				<mx:TextArea text="{itemList.selectedItem.description}"
+					change="itemList.selectedItem.description = event.target.text" width="100%" height="100%"/>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:Spacer height="10"/>
+		<mx:HBox width="100%">
+			<mx:Button label="Creëren" click="itemServices.createItem(null)"/>
+			<mx:Button label="Verwijderen" click="itemServices.deleteItem()" enabled="{itemList.selectedItem != null}"/>
+			<mx:Spacer width="100%"/>
+			<mx:Button label="Reset" click="itemServices.fetch()"/>
+			<mx:Button label="Opslaan" click="itemServices.save()"/>
+		</mx:HBox>
+	</mx:VBox>
+</mx:Canvas>

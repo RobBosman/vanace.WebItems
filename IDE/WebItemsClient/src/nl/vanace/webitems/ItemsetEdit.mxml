@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:gui="nl.bransom.gui.*"
+		 xmlns:local="nl.vanace.webitems.*"
+		 horizontalScrollPolicy="off"
+		 verticalScrollPolicy="off"
+		 disabledOverlayAlpha="0.0"
+		 label="Config"
+		 enabled="{itemsetXml != null}"
+		 creationComplete="init()">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			
+			import nl.bransom.XmlUtils;
+			import nl.bransom.rest.RestClient;
+
+			[Bindable] public var restClient:RestClient;
+			[Bindable] public var itemsetXml:XML;
+			[Bindable] private var settingsXml:XML;
+
+			public static const DEFAULTS:Object = {
+				settings_a:{
+					totalWidth:479,
+					totalHeight:191,
+					bgRadius:6,
+					bgColor:"0x000000",
+					htmlFieldWidth:300,
+					imageStrokePx:3,
+					stroke1Px:2,
+					stroke1Radius:6,
+					stroke1Color:"0x1f1f1f",
+					stroke2Px:1,
+					stroke2Radius:6,
+					stroke2Color:"0x575757",
+					bgWidth:300,
+					bgHeight:23,
+					butDistance:2,
+					butHeight:23,
+					maskHeight:75
+				},
+				settings_b:{
+					width:200,
+					height:200,
+					visibleItems:3,
+					itemWidth:800,
+					itemHeight:140,
+					itemsHSpacing:15,
+					itemsVSpacing:15,
+					arrowVSpacing:15,
+					showArrows:1,
+					showScrollbar:1,
+					scrollbarHeight:500,
+					maxBlur:32,
+					slideTime:0.5,
+					autoPlay:0,
+					autoPlayDelay:5,
+					pauseOnItemMouseOver:1,
+					itemReflection:1,
+					reflectionAlpha:30,
+					reflectionHeight:25,
+					reflectionDistance:0
+				},
+				settings_c:{
+					listWidth:950,
+					listHeight:530,
+					buttonHeight:80,
+					blurXAmount:60,
+					blurYAmount:0,
+					animationTime:0.5,
+					animationType:"easeOutQuart"
+				}
+			};
+			[Bindable] private var SETTING_TYPES:Array = [
+				{state:"SETTINGS_NONE", comboLabel:"-", itemsetType:"", field:null},
+				{state:"SETTINGS_A", comboLabel:"type A", itemsetType:"A", field:"settings_a"},
+				{state:"SETTINGS_B", comboLabel:"type B", itemsetType:"B", field:"settings_b"},
+				{state:"SETTINGS_C", comboLabel:"type C", itemsetType:"C", field:"settings_c"}
+			];
+			
+			private function init():void {
+				BindingUtils.bindSetter(setItemsetXml, this, "itemsetXml");
+			}
+			private function setItemsetXml(itemsetXml:XML):void {
+				currentState = "SETTINGS_NONE";
+				if (itemsetXml == null) {
+					settingTypeCombo.selectedIndex = 0;
+				} else {
+					var itemsetType:String = XmlUtils.getTextContent(itemsetXml, "type");
+					for (var i:uint = 1; i < SETTING_TYPES.length; i++) {
+						if (itemsetType == SETTING_TYPES[i].itemsetType) {
+							settingTypeCombo.selectedIndex = i;
+							currentState = SETTING_TYPES[i].state;
+						}
+					}
+					settingTypeComboChangeHandler(null);
+				}
+			}
+			
+			private function getSettingsXml(itemsetXml:XML, field:String):XML {
+				var settingsXmlList:XMLList = XmlUtils.getElements(itemsetXml, field);
+				if (settingsXmlList.length() == 0) {
+					return null;
+				} else {
+					return settingsXmlList[0];
+				}
+			}
+			
+			private function getDefaults(field:String):Object {
+				return DEFAULTS[field];
+			}
+
+			private function refreshGui():void {
+				var childGui:Object = null;
+				for each (childGui in getChildren()) {
+					if (childGui.hasOwnProperty("settingsXml")) {
+						// Enforce refreshing the GUI.
+						childGui.settingsXml = null;
+						childGui.settingsXml = getSettingsXml(itemsetXml, settingTypeCombo.selectedItem.field);
+					}
+				}
+			}
+			
+			private function settingTypeComboChangeHandler(event:Event):void {
+				// Set the 'type' node.
+				restClient.setTextContent(itemsetXml, "type", settingTypeCombo.selectedItem.itemsetType);
+				// Ensure that the correct 'Settings#Edit' UIComponent is visible.
+				currentState = settingTypeCombo.selectedItem.state;
+				settingsXml = getSettingsXml(itemsetXml, settingTypeCombo.selectedItem.field);
+			}
+
+			private function canCreateValues():Boolean {
+				var xmlList:XMLList = XmlUtils.getElements(itemsetXml, settingTypeCombo.selectedItem.field);
+				return (settingTypeCombo.selectedItem != null) && (settingTypeCombo.selectedItem.field != null)
+					&& (xmlList.length() == 0);
+			}
+			
+			private function setToDefaults(itemsetXml:XML, field:String):void {
+				var defaultValues:Object = getDefaults(field);
+				if (defaultValues == null) {
+					return;
+				}
+				// Get or create the settings-node.
+				if (settingsXml == null) {
+					settingsXml = restClient.createEntityNode(itemsetXml, field);
+				}
+				// Apply all default values.
+				for (var propertyName:String in defaultValues) {
+					restClient.setTextContent(settingsXml, propertyName, defaultValues[propertyName]);
+				}
+				refreshGui();
+			}
+			
+			private function eraseSettingProperties():void {
+				// Delete the settings-node.
+				restClient.deleteEntityNode(settingsXml);
+				settingsXml = null;
+				refreshGui();
+			}
+		]]>
+	</fx:Script>
+
+	<!--
+	<fx:Binding source="itemsetNameInput.text" destination="this.label" />
+	-->
+	
+	<mx:states>
+		<mx:State name="SETTINGS_NONE" />
+		<mx:State name="SETTINGS_A" />
+		<mx:State name="SETTINGS_B" />
+		<mx:State name="SETTINGS_C" />
+	</mx:states>
+
+	<mx:Form>
+		<mx:FormItem label="naam">
+			<mx:HBox verticalAlign="middle">
+				<mx:CheckBox id="unlockGui" selected="false" />
+				<gui:XmlTextInput id="itemsetNameInput" restClient="{restClient}" objectXml="{itemsetXml}"
+								  propertyName="name" editable="{unlockGui.selected}"
+								  focusOut="unlockGui.selected = false" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem label="news reader type">
+			<mx:ComboBox id="settingTypeCombo" change="settingTypeComboChangeHandler(event)"
+							 dataProvider="{SETTING_TYPES}" labelField="comboLabel" width="100%" />
+		</mx:FormItem>
+		<mx:FormItem label="reset waarden">
+			<mx:Button label="Defaults" enabled="{currentState != 'SETTINGS_NONE'}"
+					   click="setToDefaults(itemsetXml, settingTypeCombo.selectedItem.field)" width="100%" />
+		</mx:FormItem>
+		<mx:FormItem label="wis waarden">
+			<mx:Button label="Wissen" enabled="{settingsXml != null}" click="eraseSettingProperties()" width="100%" />
+		</mx:FormItem>
+	</mx:Form>
+	<mx:VRule width="10" height="100%" />
+	<local:SettingsEdit restClient="{restClient}" includeIn="SETTINGS_A"
+						settingsXml="{getSettingsXml(itemsetXml, 'settings_a')}"
+						defaultValues="{getDefaults('settings_a')}"
+						width="100%" height="100%" />
+	<local:SettingsEdit restClient="{restClient}" includeIn="SETTINGS_B"
+						settingsXml="{getSettingsXml(itemsetXml, 'settings_b')}"
+						defaultValues="{getDefaults('settings_b')}"
+						width="100%" height="100%" />
+	<local:SettingsEdit restClient="{restClient}" includeIn="SETTINGS_C"
+						settingsXml="{getSettingsXml(itemsetXml, 'settings_c')}"
+						defaultValues="{getDefaults('settings_c')}"
+						width="100%" height="100%" />
+</mx:HBox>

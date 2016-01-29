@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    Options -Indexes +FollowSymlinks
+    RewriteEngine On
+    RewriteBase /webitems/
+
+    # Redirect '/webitems/webitems/*' to '/webitems/*'.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^webitems/(.+)$ $1 [R,L]
+	
+    # Rewrite any URL containing a site name (e.g. '/webitems/elsvanwijnen/' to '/webitems/editor/elsvanwijnen').
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^/]+) editor/$1 [R,NC]
+</IfModule>
+
+DirectoryIndex webitems.php

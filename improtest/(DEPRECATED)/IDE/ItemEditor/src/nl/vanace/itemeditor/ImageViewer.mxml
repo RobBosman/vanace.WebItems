@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="library://ns.adobe.com/flex/halo" xmlns:fx="http://ns.adobe.com/mxml/2009"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off" width="100%" height="100%"
+	creationComplete="init()">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			private const LIST_IMAGES_URL:String = "getImages.php";
+			private const FILE_UPLOAD_URL:String = "saveImage.php";
+			private const DELETE_IMAGES_URL:String = "deleteImage.php";
+			
+			private var itemSoort:String;
+			private var itemXml:XML;
+			private var fileRef:FileReference;
+			
+			private function init():void {
+				fileRef = new FileReference();
+				fileRef.addEventListener(Event.SELECT, fileRef_select);
+				fileRef.addEventListener(ProgressEvent.PROGRESS, fileRef_progress);
+				fileRef.addEventListener(Event.COMPLETE, fileRef_complete);
+
+				imageListColl.enableAutoUpdate();
+			}
+			
+			public function show(itemSoort:String, itemXml:XML): void {
+				this.itemSoort = itemSoort;
+				this.itemXml = itemXml;
+				getXmlService.url = LIST_IMAGES_URL + "?urlPrefix=" + ItemServices.URL_PREFIX
+					+ "&itemSoort=" + itemSoort + "&="+ Math.random();
+				refresh();
+				visible = true;
+			}
+			
+			private function refresh():void {
+				getXmlService.send();
+			}
+			
+			private function faultHandler(event:FaultEvent):void {
+				Alert.show(event.fault.faultString, "Fout", Alert.OK, this, null, ItemEditor.exclamationMark, Alert.OK);
+			}
+			
+			private function getXmlCompleteHandler(event:ResultEvent):void {
+				var imagesXml:XML = XML(event.result);
+				imageListColl = new XMLListCollection(imagesXml.image);
+				// Preselect the current image.
+				for each (var imageXml:XML in imagesXml.image) {
+					if (itemXml.@picture == imageXml.@url) {
+						imageList.selectedItem = imageXml;
+					}
+				}
+			}
+			
+			private function browseAndUpload():void {
+				fileRef.browse();
+			}
+			
+			private function deleteImage():void {
+				Alert.show("Geselecteerde afbeelding definitief verwijderen?", "Bevestiging", Alert.YES | Alert.NO,
+					this, deleteConfirmed, ItemEditor.questionMark, Alert.NO); 
+			}
+
+			private function deleteConfirmed(someEvent:CloseEvent):void{
+				if (someEvent.detail == Alert.YES) {
+					for (var index:int = 0; index < imageList.selectedItems.length; index++) {
+						var item:XML = imageList.selectedItems[index];
+						deleteImagesService.request[index] = item.@url;
+					}
+					deleteImagesService.send();
+				}
+			}
+			
+			private function deleteCompleteHandler(event:ResultEvent):void {
+				refresh();
+			}
+			
+			private function fileRef_select(evt:Event):void {
+				fileRef.upload(new URLRequest(FILE_UPLOAD_URL + "?urlPrefix=" + ItemServices.URL_PREFIX
+					+ "?itemSoort=" + itemSoort));
+			}
+			
+			private function fileRef_progress(evt:ProgressEvent):void {
+				progressBar.visible = true;
+			}
+			
+			private function fileRef_complete(evt:Event):void {
+				refresh();
+				progressBar.visible = false;
+			}
+			
+			private function selectImage():void {
+				itemXml.@picture = imageList.selectedItem.@url;
+				visible = false;
+			}
+			
+			private function deselectImage():void {
+				itemXml.@picture = CanvasImage.GEEN_AFBEELDING;
+				visible = false;
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<mx:XMLListCollection id="imageListColl"/>
+		<mx:HTTPService id="getXmlService" resultFormat="xml" result="getXmlCompleteHandler(event)" fault="faultHandler(event)"/>
+		<mx:HTTPService id="deleteImagesService" url="{DELETE_IMAGES_URL}" method="POST"
+			result="deleteCompleteHandler(event)" fault="faultHandler(event)"/>
+	</fx:Declarations>
+
+	<mx:TileList id="imageList" dataProvider="{imageListColl}" width="100%" height="100%" borderThickness="0"
+				 doubleClickEnabled="true" doubleClick="selectImage()">
+		<mx:itemRenderer>
+			<fx:Component> 
+				<mx:VBox verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalAlign="center"
+						 paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10"
+						 width="150" height="170">
+					<mx:Canvas width="120" height="120" borderStyle="solid" toolTip="{data.@url}">
+						<mx:Image source="{ItemServices.URL_PREFIX}{data.@url}"
+								  width="100%" height="100%" horizontalAlign="center" verticalAlign="middle"/>
+					</mx:Canvas>
+					<mx:Text text="{data.@filename}" width="100%"/>
+				</mx:VBox>
+			</fx:Component>
+		</mx:itemRenderer>
+	</mx:TileList>
+	
+	<mx:HBox width="100%" paddingLeft="10">
+		<mx:Button label="Uploaden..." click="browseAndUpload()"/>
+		<mx:Button label="Verwijderen" click="deleteImage()" enabled="{imageList.selectedItem != null}"/>
+		<mx:ProgressBar id="progressBar" indeterminate="true" width="100%" visible="false"/>
+		<mx:Button label="Selecteren" click="selectImage()" enabled="{imageList.selectedItem != null}"/>
+		<mx:Button label="Geen afbeelding" click="deselectImage()"/>
+		<mx:Button label="Sluiten" click="visible = false"/>
+	</mx:HBox>
+</mx:VBox>

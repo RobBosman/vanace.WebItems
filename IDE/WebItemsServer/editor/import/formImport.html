@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Import</title>
+    </head>
+    <body>
+        <table>
+            <form action="import.php" method="post">
+                <tr>
+                    <td>User</td>
+                    <td><input type="text" name="user" value="Rob" /></td>
+                </tr>
+                <tr>
+                    <td>URL van XML-data</td>
+                    <td><input type="text" name="xmlUrl" size="80" value="http://www.improtheater.nl/impro2010/portfolio.xml" /></td>
+                </tr>
+                <tr>
+                    <td>site.name</td>
+                    <td><input type="text" name="site/name" value="improtheater" /></td>
+                </tr>
+                <tr>
+                    <td>site.id</td>
+                    <td><input type="text" name="site/id" value="" /></td>
+                </tr>
+                <tr>
+                    <td>itemset.name</td>
+                    <td><input type="text" name="itemset/name" value="portfolio" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="checkbox" name="saveInDB" value="false">save in DB</input></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" name="submitButton" value="Importeren" /></td>
+                </tr>
+            </form>
+        </table>
+    </body>
+</html>

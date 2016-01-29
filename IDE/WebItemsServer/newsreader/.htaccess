@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine On
+
+    # Send any URL ending with 'no_image.png' (e.g. '/webitems/newsreader/elsvanwijnen/no_image.png?$skipBinaries=true') to no_image.png.
+    RewriteRule no_image\.png$ no_image.png [NC,L]
+
+    # Send any URL ending with '.xml' (e.g. '/webitems/newsreader/elsvanwijnen/data.xml?$skipBinaries=true') to get-xml.php.
+    RewriteRule \.xml$ get-xml.php [QSA,NC,L]
+
+    # Send anything else (e.g. '/webitems/newsreader/elsvanwijnen/image/330/data.jpg') to get-other.php.
+    RewriteRule ^[^/]+/[^/]+/[^/]+/.+$ get-other.php [L]
+</IfModule>

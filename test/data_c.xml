@@ -1,0 +1,17 @@
+<News>
+	<settings>
+		<listWidth>800</listWidth>
+		<listHeight>240</listHeight>
+		<buttonHeight>80</buttonHeight>
+		<blurXAmount>60</blurXAmount>
+		<blurYAmount>0</blurYAmount>
+		<animationTime>0.5</animationTime>
+		<animationType>easeOutQuart</animationType>
+	</settings>
+	<content title="Vacatures">
+		<item title="Op dit moment zijn er geen vacatures" date="28 januari 2011"><![CDATA[ 
+		Je bent een ervaren ontwerper .......]]>
+		</item>
+		<item title="Op dit moment zijn er nog steeds geen vacatures" date="28 januari 2011"><![CDATA[Klik <b><i><a href="http://web.vanace.nl/bsol/vacatures/Movares_Infra_Ontwerper_wegen.docx">hier</a></i></b> om de vacature te downloaden]]></item>
+	</content>
+</News>

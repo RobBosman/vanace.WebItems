@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="library://ns.adobe.com/flex/mx"
+				xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:gui="nl.bransom.gui.*"
+				xmlns:webitems="nl.vanace.webitems.*"
+				horizontalAlign="center"
+				verticalAlign="top"
+				toolTip="WebItems {APP_VERSION}"
+				creationComplete="init()">
+	
+	<fx:Style source="WebItems.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.ListEvent;
+			import mx.utils.URLUtil;
+			
+			import nl.bransom.CssLoader;
+			import nl.bransom.XmlUtils;
+			import nl.bransom.gui.Utils;
+			import nl.bransom.rest.RestClient;
+			
+			public static const APP_TITLE:String = "Vanace WebItems";
+			public static const APP_VERSION:String = "v20150601";
+			public static const REST_APP:String = "webitems";
+			
+			private static const REST_BASE_URL:String = "/bransom/REST/";
+			private static const TREE_MAPPING:Object = { // localName:labelXPath
+				site:'name',
+				itemset:'name'
+			};
+			
+			[Bindable] private var restClient:RestClient;
+			[Bindable] private var siteSetXml:XML;
+			[Bindable] private var selectedSiteXml:XML;
+			[Bindable] private var selectedItemsetXml:XML;
+			[Bindable] private var targetName:String;
+			[Bindable] private var isAdmin:Boolean;
+			
+			private function init():void {
+				restClient = new RestClient(REST_BASE_URL, REST_APP);
+				statusControlBar.restClient = restClient;
+				
+				getTargetName();
+				if (targetName != null) {
+					targetName = targetName.toLowerCase();
+				}
+
+				isAdmin = (targetName == "beheer");
+				currentState = "INIT";
+				
+				var restUrlParams:Object = {};
+				if (!isAdmin) {
+					restUrlParams.name = targetName;
+				}
+				restClient.read("ALL_SITES", "site", restUrlParams, setSiteSetXml);
+			}
+			private function setSiteSetXml(siteSetXml:XML):void {
+				this.siteSetXml = siteSetXml;
+				selectedItemsetXml = null;
+				var siteXmlList:XMLList = XmlUtils.getElements(siteSetXml, "site");
+				if (siteXmlList.length() == 0) {
+					currentState = (isAdmin ? "ADMIN" : "NO_SITES");
+				} else if (siteXmlList.length() == 1) {
+					var cssLoader:CssLoader = new CssLoader(XmlUtils.getTextContent(siteXmlList[0], "name") + ".swf",
+						this);
+					cssLoader.load();
+					var itemsetList:XMLList = XmlUtils.getElements(siteXmlList[0], "itemset");
+					if (itemsetList.length() == 1) {
+						selectedItemsetXml = itemsetList[0];
+						currentState = (isAdmin ? "ADMIN" : "SINGLE_SITE_SINGLE_ITEMSET");
+					} else {
+						currentState = (isAdmin ? "ADMIN" : "SINGLE_SITE_MULTIPLE_ITEMSETS");
+					}
+				} else {
+					currentState = "ADMIN";
+				}
+				
+				if (siteTree != null) {
+					siteTree.dataXml = siteSetXml;
+					siteTree.expandAll();
+				}
+			}
+			
+			private function getTargetName():void {
+				// Find the url-fragment that indicates the name of a single site, or 'beheer'.
+				var url:String = Utils.getCurrentUrl(APP_TITLE);
+				targetName = Utils.getUrlParam(url, "site");
+				if (targetName == null) {
+					// http://localhost:9080/webitems/beheer#DEBUG		=> beheer
+					// http://localhost:9080/webitems/beheer?debug=true	=> beheer
+					// http://localhost:9080/webitems/elsvanwijnen		=> elsvanwijnen
+					// http://web.vanace.nl/webitems/editor/wielinga#	=> wielinga
+					var urlParts:Array = url.split(/[\?#]/);
+					if (urlParts.length > 0) {
+						urlParts = urlParts[0].split(/\//);
+					}
+					if (urlParts.length > 0) {
+						targetName = urlParts[urlParts.length - 1];
+					}
+				}
+			}
+			
+			private function siteTreeChangeHandler(event:ListEvent):void {
+				selectedSiteXml = null;
+				selectedItemsetXml = null;
+				var selectedXml:XML = event.currentTarget.getSelectedXmlList()[0];
+				if (selectedXml != null) {
+					if (selectedXml.localName() == 'site') {
+						selectedSiteXml = selectedXml;
+					} else if (selectedXml.localName() == 'itemset') {
+						selectedItemsetXml = selectedXml;
+					}
+				}
+			}
+			
+			private function getCurrentSiteXML(siteXml:XML, itemsetXml:XML):XML {
+				if (siteXml != null) {
+					return siteXml;
+				} else if (itemsetXml != null) {
+					return itemsetXml.parent();
+				} else {
+					return null;
+				}
+			}
+			
+			private function createSite():void {
+				var siteXml:XML = restClient.createEntityNode(siteSetXml, "site");
+				restClient.setTextContent(siteXml, "name", "naam_site");
+				refreshGui();
+			}
+			
+			private function deleteSite():void {
+				if (selectedSiteXml == null) {
+					return;
+				}
+				var siteNaam:String = XmlUtils.getTextContent(selectedSiteXml, "name");
+				var xmlList:XMLList = XmlUtils.getElements(selectedSiteXml, "itemset");
+				var numItemsets:int = xmlList.length();
+				if (numItemsets > 0) {
+					var message1:String = "De site '" + siteNaam + "' bevat nog " + numItemsets + " itemset"
+						+ ((numItemsets == 1) ? '' : 's')
+						+ ". Je kunt een site alleen verwijderen als die geen itemsets bevatten.";
+					Alert.show(message1, "Waarschuwing");
+				} else {
+					var message2:String = "Moet de site '" + siteNaam + "' definitief worden verwijderd?";
+					Alert.show(message2, "Bevestigen", Alert.YES | Alert.NO, this, deleteSiteConfirmHandler, null,
+						Alert.NO);
+				}
+			}
+			private function deleteSiteConfirmHandler(closeEvent:CloseEvent):void {
+				if (closeEvent.detail != Alert.YES) {
+					return;
+				}
+				restClient.deleteEntityNode(selectedSiteXml);
+				selectedSiteXml = null;
+				refreshGui();
+			}
+			
+			private function createItemset():void {
+				var itemsetXml:XML = restClient.createEntityNode(selectedSiteXml, "itemset");
+				restClient.setTextContent(itemsetXml, "name", "naam_itemset");
+				refreshGui();
+			}
+			
+			private function deleteItemset():void {
+				if (selectedItemsetXml == null) {
+					return;
+				}
+				var itemsetNaam:String = XmlUtils.getTextContent(selectedItemsetXml, "name");
+				var xmlList:XMLList = XmlUtils.getElements(selectedItemsetXml, "item");
+				var numItems:int = xmlList.length();
+				if (numItems > 0) {
+					var message1:String = "De site '" + itemsetNaam + "' bevat nog " + numItems + " item"
+						+ ((numItems == 1) ? '' : 's')
+						+ ". Je kunt een itemset alleen verwijderen als die geen items bevatten.";
+					Alert.show(message1, "Waarschuwing");
+				} else {
+					var message2:String = "Moet de itemset '" + itemsetNaam + "' definitief worden verwijderd?";
+					Alert.show(message2, "Bevestigen", Alert.YES | Alert.NO, this, deleteItemsetConfimrHandler, null,
+						Alert.NO);
+				}
+			}
+			private function deleteItemsetConfimrHandler(closeEvent:CloseEvent):void {
+				if (closeEvent.detail != Alert.YES) {
+					return;
+				}
+				restClient.deleteEntityNode(selectedItemsetXml);
+				selectedItemsetXml = null;
+				refreshGui();
+			}
+			
+			private function refreshGui():void {
+				siteTree.dataXml = null;
+				siteTree.dataXml = siteSetXml;
+				siteTree.expandAll();
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:states>
+		<mx:State name="INIT" />
+		<mx:State name="ADMIN" />
+		<mx:State name="NO_SITES" />
+		<mx:State name="SINGLE_SITE_SINGLE_ITEMSET" />
+		<mx:State name="SINGLE_SITE_MULTIPLE_ITEMSETS" />
+	</mx:states>
+	
+	<gui:DebugControlBar id="debugControlBar" restClient="{restClient}" appTitle="{APP_TITLE}"
+						 width="100%" styleName="debug-control-bar" />
+	
+	<mx:HBox width="100%">
+		<mx:Label text="{APP_TITLE}" styleName="title" height="100%" />
+		<mx:Label text="{APP_VERSION}" styleName="version" />
+		<gui:PublishControlBar restClient="{restClient}" xml="{getCurrentSiteXML(selectedSiteXml, selectedItemsetXml)}"
+							   width="100%" />
+	</mx:HBox>
+	<mx:HRule width="100%" height="10" />
+	
+	<mx:HBox includeIn="NO_SITES" horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">
+		<mx:Label styleName="error" htmlText="Domeinnaam: &lt;b&gt;{targetName}&lt;/b&gt; is niet bekend." />
+	</mx:HBox>
+	
+	<mx:HBox excludeFrom="NO_SITES" width="100%" height="100%">
+		<mx:VBox includeIn="ADMIN,SINGLE_SITE_MULTIPLE_ITEMSETS" minWidth="200" height="100%">
+
+			<mx:VBox includeIn="ADMIN" width="100%">
+				<mx:HBox verticalAlign="middle" width="100%">
+					<mx:Label text="site" width="100%" />
+					<mx:Button label="+" click="createSite()" />
+					<mx:Button label="-" click="deleteSite()" enabled="{selectedSiteXml != null}" />
+				</mx:HBox>
+				<mx:HBox verticalAlign="middle" width="100%">
+					<mx:Label text="itemset" width="100%" />
+					<mx:Button label="+" click="createItemset()" enabled="{selectedSiteXml != null}" />
+					<mx:Button label="-" click="deleteItemset()" enabled="{selectedItemsetXml != null}" />
+				</mx:HBox>
+			</mx:VBox>
+
+			<gui:XmlTree id="siteTree" mapping="{TREE_MAPPING}" change="siteTreeChangeHandler(event)"
+						 width="100%" height="100%" />
+		</mx:VBox>
+		
+		<mx:Canvas width="100%" height="100%">
+
+			<webitems:SiteEdit includeIn="ADMIN"
+							   restClient="{restClient}" siteXml="{selectedSiteXml}"
+							   visible="{selectedSiteXml != null}" width="100%" height="100%" />
+
+			<mx:TabNavigator includeIn="ADMIN"
+							 visible="{selectedSiteXml == null &amp;&amp; selectedItemsetXml != null}"
+							 width="100%" height="100%">
+				<webitems:ItemListEdit restClient="{restClient}" itemsetXml="{selectedItemsetXml}"
+									   width="100%" height="100%" />
+				<webitems:ItemsetEdit restClient="{restClient}" itemsetXml="{selectedItemsetXml}"
+									  width="100%" height="100%" />
+			</mx:TabNavigator>
+			<webitems:ItemListEdit includeIn="SINGLE_SITE_MULTIPLE_ITEMSETS,SINGLE_SITE_SINGLE_ITEMSET"
+								   restClient="{restClient}" itemsetXml="{selectedItemsetXml}"
+								   width="100%" height="100%" />
+		</mx:Canvas>
+	</mx:HBox>
+	
+	<gui:StatusControlBar id="statusControlBar" restClient="{restClient}" width="100%" />
+	
+</mx:Application>

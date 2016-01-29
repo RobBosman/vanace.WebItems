@@ -1,0 +1,51 @@
+config.ini:
+	authentication model (OpenIDConnect, HTPassword or NONE)
+
+patch:
+	tabel _account:
+		drop columns 'password' and 'role'
+		
+	tabel _relationship:
+		drop column 'multiplicity'
+		drop alle indices
+		
+	tabel _entity:
+		drop column 'namespaceUri'
+		rename column 'id_object_key_name' to 'id_object_column_name'
+		rename column 'id_state_key_name' to 'id_state_column_name'
+		drop alle indices
+		add (first) column 'id' INT 10 unsigned NON-NULLABLE AUTO_INCREMENT
+			1 image
+			2 item
+			3 itemset
+			4 settings_a
+			5 settings_b
+			6 settings_c
+			7 site
+		make column 'id' primary key
+		make column 'name' unique
+		
+	tabel _relationship:
+		add (first) column 'id_fk_entity' INT 10 unsigned NOT-NULLABLE NO-DEFAULT
+			7 site
+			3 itemset
+			3 itemset
+			3 itemset
+			2 item
+			3 itemset
+		rename (second) column 'fkColumn' to 'fk_column_name'
+		make columns 'id' and 'fk_column_name' primary key
+		add (third) column 'id_referred_entity' INT 10 unsigned NULLABLE NULL
+			"id_fk_entity"	"fk_column_name"	"id_referred_entity"	"id_owner_entity"
+			"2"	"id_image"	"1"	\N
+			"2"	"id_itemset"	"3"	"3"
+			"3"	"id_settings_a"	"4"	"3"
+			"3"	"id_settings_b"	"5"	"3"
+			"3"	"id_settings_c"	"6"	"3"
+			"3"	"id_site"	"7"	"7"
+		add (fourth) column 'id_owner_entity' INT 10 unsigned NULLABLE NULL
+			copy of column 'id_fk_entity'
+		drop columns 'fromEntity', 'toEntity', 'fkEntity'
+		create 'FK_relationship_fk_entity'
+		create 'FK_relationship_owner_entity'
+		create 'FK_relationship_referred_entity'

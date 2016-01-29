@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:gui="nl.bransom.gui.*">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.utils.ObjectUtil;
+			
+			import nl.bransom.rest.RestClient;
+			
+			[Bindable] public var defaultValues:Object;
+			[Bindable] public var restClient:RestClient;
+			[Bindable] public var settingsXml:XML;
+			
+			private function getProperties():Array {
+				return ObjectUtil.getClassInfo(defaultValues).properties;
+			}
+		]]>
+	</fx:Script>
+
+	<mx:Repeater id="fieldNames" dataProvider="{getProperties()}">
+		<mx:FormItem label="{fieldNames.currentItem}">
+			<gui:XmlTextInput restClient="{restClient}" objectXml="{settingsXml}"
+							  propertyName="{fieldNames.currentItem}" />
+		</mx:FormItem>
+	</mx:Repeater>
+</mx:Form>

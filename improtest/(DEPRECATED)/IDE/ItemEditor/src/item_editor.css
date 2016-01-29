@@ -1,0 +1,50 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/halo";
+
+mx|Application {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-color: #202020;
+	color: white;
+	font-family: verdana;
+	font-size: 14pt;
+}
+/*
+.nieuws {
+	background-color: #253040;
+}
+.links {
+	background-color: #102504;
+}
+.portfolio {
+	background-color: #401005;
+}
+*/
+.imageChooser {
+	background-color: #303030;
+}
+mx|TabNavigator {
+	background-alpha: 0;
+}
+mx|TabBar {
+	/* color: #00FFFF; /* non-highlighted text */
+	background-color: #CCCCCC; /* background selected tab */
+}
+mx|HorizontalList {
+	background-alpha: 0;
+}
+mx|TileList {
+	background-alpha: 0;
+}
+mx|TextInput {
+	background-alpha: 0;
+	font-weight: bold;
+}
+mx|TextArea {
+	background-alpha: 0;
+}
+.itemTitle {
+	font-size: 18pt;
+}
+.itemThumbnailText {
+	font-size: 12pt;
+}

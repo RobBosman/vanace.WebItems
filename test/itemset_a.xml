@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<set xmlns="http://www.bransom.nl/schemas/vanace/webitems/v20110101" published="false" at="2011-02-07T13:11:57">
+	<site type="entity" published="false">
+		<id_object key="primary">1</id_object>
+		<id_state key="primary">1</id_state>
+		<name><![CDATA[improtheater]]></name>
+		<itemset type="entity" published="true">
+			<id_object key="primary">3</id_object>
+			<id_state key="primary">52</id_state>
+			<id_site key="foreign" entity="site">1</id_site>
+			<name><![CDATA[portfolio]]></name>
+			<id_settings_a key="foreign" entity="settings_a">2</id_settings_a>
+			<item type="entity" published="true">
+				<id_object key="primary">4</id_object>
+				<id_state key="primary">55</id_state>
+				<id_itemset key="foreign" entity="itemset">3</id_itemset>
+				<sortIndex_itemset>4</sortIndex_itemset>
+				<timestamp type="timestamp">2011-02-04T16:19:33</timestamp>
+				<title><![CDATA[Portfolio]]></title>
+				<content><![CDATA[Op deze pagina een overzicht van de activiteiten waar Improtheater mee bezig is geweest. Sommige zijn van lang geleden, andere van rectenter datum. Dit overzicht wordt natuurlijk steeds aangepast. Mooie projecten komen erop en er zal zo nu en dan ook eens iets verdwijnen. Niet omdat ik het niet meer belangrijk vind, maar vooral omdat ik het overzicht actueel en toepasselijk wil houden. Ook de activiteiten van Improtheater zijn namelijk constant in beweging.]]></content>
+				<linkText><![CDATA[Naar de site]]></linkText>
+				<linkTarget>0</linkTarget>
+			</item>
+			<item type="entity" published="true">
+				<id_object key="primary">5</id_object>
+				<id_state key="primary">56</id_state>
+				<id_itemset key="foreign" entity="itemset">3</id_itemset>
+				<sortIndex_itemset>5</sortIndex_itemset>
+				<timestamp type="timestamp">2011-02-04T16:19:33</timestamp>
+				<title><![CDATA[Pecha Kucha night Amersfoort]]></title>
+				<content><![CDATA[Een Pecha Kucha is een korte lezing, gebouwd rond 20 slides die allemaal exact 20 seconden te zien zijn. Wereldwijd wordt het format gebruikt op Pecha Kucha nights. Op zo'n avond zijn twaalf Pecha Kucha's te zien. Ook <font color="#4A92B4"><u><a href="http://www.pechakucha-amersfoort.nl/" target="_blank">Amersfoort</a></u></font> heeft  het. Voor de editie van januari 2011 werd ik gevraagd een bijdrage te leveren. Lastig als je improviseert want van het format van 20 keer 20 mag niet worden afgeweken. <font color="#4A92B4"><u><a href="http://www.youtube.com/watch?v=TtNlI1cxafU" target="_blank">Hier</a></u></font>  het resultaat van mijn Pecha Kucha over creativiteit en de kracht van het woord Ja.]]></content>
+				<linkText><![CDATA[Naar de site]]></linkText>
+				<linkTarget>0</linkTarget>
+				<id_image key="foreign" entity="image">330</id_image>
+				<image type="entity" published="false">
+					<id_object key="primary">330</id_object>
+					<id_state key="primary">330</id_state>
+					<width>271</width>
+					<height>180</height>
+					<caption><![CDATA[vogels]]></caption>
+					<mediatype><![CDATA[jpg]]></mediatype>
+				</image>
+			</item>
+			<settings_a type="entity" published="true">
+				<id_object key="primary">2</id_object>
+				<id_state key="primary">2</id_state>
+				<totalWidth>479</totalWidth>
+				<totalHeight>191</totalHeight>
+				<bgRadius>6</bgRadius>
+				<bgColor><![CDATA[0x000000]]></bgColor>
+				<htmlFieldWidth>300</htmlFieldWidth>
+				<imageStrokePx>3</imageStrokePx>
+				<stroke1Px>2</stroke1Px>
+				<stroke1Radius>6</stroke1Radius>
+				<stroke1Color><![CDATA[0x1f1f1f]]></stroke1Color>
+				<stroke2Px>1</stroke2Px>
+				<stroke2Radius>6</stroke2Radius>
+				<stroke2Color><![CDATA[0x575757]]></stroke2Color>
+				<bgWidth>300</bgWidth>
+				<bgHeight>23</bgHeight>
+				<butDistance>2</butDistance>
+				<butHeight>23</butHeight>
+				<maskHeight>75</maskHeight>
+			</settings_a>
+		</itemset>
+	</site>
+</set>

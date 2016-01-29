@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.vanace.nl/schemas/newsreader" xmlns:nr="http://www.vanace.nl/schemas/newsreader">
+	<xs:element name="NEWS_READER">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="nr:settings_slider"/>
+				<xs:element ref="nr:settings_menu"/>
+				<xs:element ref="nr:news" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="settings_slider">
+		<xs:complexType>
+			<xs:attribute name="totalWidth" type="xs:short" use="required"/>
+			<xs:attribute name="totalHeight" type="xs:short" use="required"/>
+			<xs:attribute name="stroke2Radius" type="xs:short" use="required"/>
+			<xs:attribute name="stroke2Px" type="xs:short" use="required"/>
+			<xs:attribute name="stroke2Color" type="nr:color" use="required"/>
+			<xs:attribute name="stroke1Radius" type="xs:short" use="required"/>
+			<xs:attribute name="stroke1Px" type="xs:short" use="required"/>
+			<xs:attribute name="stroke1Color" type="nr:color" use="required"/>
+			<xs:attribute name="imageStrokePx" type="xs:short" use="required"/>
+			<xs:attribute name="htmlFieldWidth" type="xs:short" use="required"/>
+			<xs:attribute name="bgRadius" type="xs:short" use="required"/>
+			<xs:attribute name="bgColor" type="nr:color" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="settings_menu">
+		<xs:complexType>
+			<xs:attribute name="maskHeight" type="xs:short" use="required"/>
+			<xs:attribute name="butHeight" type="xs:short" use="required"/>
+			<xs:attribute name="butDistance" type="xs:short" use="required"/>
+			<xs:attribute name="bgWidth" type="xs:short" use="required"/>
+			<xs:attribute name="bgHeight" type="xs:short" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="news">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="nr:description"/>
+			</xs:sequence>
+			<xs:attribute name="url" type="xs:anyURI" use="required"/>
+			<xs:attribute name="title" type="xs:string" use="required"/>
+			<xs:attribute name="date" type="nr:date" use="required"/>
+			<xs:attribute name="time" type="nr:time" use="required"/>
+			<xs:attribute name="target" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value=""/>
+						<xs:enumeration value="_blank"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="picture" type="xs:anyURI" use="required"/>
+			<xs:attribute name="buttonText" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="description" type="xs:string"/>
+	<xs:simpleType name="color">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="0x[0-9,A-F,a-f]{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="date">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{2}\.[0-9]{2}\.[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="time">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{2}:[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

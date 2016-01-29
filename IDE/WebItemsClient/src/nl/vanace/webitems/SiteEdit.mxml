@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Form xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:gui="nl.bransom.gui.*"
+		 xmlns:beheer="nl.vanace.webitems.beheer.*">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			
+			import nl.bransom.XmlUtils;
+			import nl.bransom.rest.RestClient;
+
+			[Bindable] public var restClient:RestClient;
+			[Bindable] public var siteXml:XML;
+		]]>
+	</fx:Script>
+
+	<fx:Binding source="siteNameInput.text" destination="this.label" />
+	
+	<mx:FormItem label="naam">
+		<mx:HBox verticalAlign="middle">
+			<mx:CheckBox id="unlockGui" selected="false" />
+			<gui:XmlTextInput id="siteNameInput" restClient="{restClient}" objectXml="{siteXml}"
+							  propertyName="name" editable="{unlockGui.selected}"
+							  focusOut="unlockGui.selected = false" />
+		</mx:HBox>
+	</mx:FormItem>
+</mx:Form>

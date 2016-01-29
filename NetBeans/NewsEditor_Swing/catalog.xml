@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Documents%20and%20Settings/BosmaR/Bureaublad/newsreader.xsd" uri="xml-resources/jaxb/NewsData/newsreader.xsd"/>
+    <system systemId="file:/D:/Mijn%20Documenten/BosmaR/My%20Documents/NetBeansProjects/NewsEditor/../../../../../Downloads/advanced-news-reader-02/newsreader.xsd" uri="xml-resources/jaxb/NewsData/newsreader.xsd"/>
+    <system systemId="file:/D:/Downloads/vanace/NetBeans/NewsEditor/../../Eclipse/newsreader/src/main/resources/newsreader.xsd" uri="xml-resources/jaxb/NewsData/newsreader.xsd"/>
+</catalog>

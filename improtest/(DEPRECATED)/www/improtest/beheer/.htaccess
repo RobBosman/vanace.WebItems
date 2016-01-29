@@ -1,0 +1,18 @@
+# Zorg ervoor dat swf- en html-bestanden maximaal een etmaal (24x60x60 = 43200 seconden) worden gecachet.
+<FilesMatch "\.(swf|html)$">
+	# Header set Cache-Control "max-age=43200"
+	Header set Cache-Control "max-age=0"
+</FilesMatch>
+
+AuthType Basic
+AuthName "Improtest beheer"
+#AuthUserFile /home/improtheater.nl/public_html/impro2010/beheer/.htpasswd
+#AuthUserFile /home/w4252545/domains/web.vanace.nl/public_html/improtest/beheer/.htpasswd
+AuthUserFile C:/Progs/Wamp/www/vanace/improtest/beheer/.htpasswd
+Require valid-user
+
+DirectoryIndex ItemEditor.html
+
+
+RewriteEngine On
+#RewriteRule ~setXml.php$ saveXml.php

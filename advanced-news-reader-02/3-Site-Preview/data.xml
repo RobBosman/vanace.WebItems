@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<NEWS_READER>
+	
+<settings_slider 
+	
+	totalWidth="479" totalHeight="191"
+	
+	bgColor="0x000000" stroke1Color="0x1f1f1f" stroke2Color="0x575757"
+	
+	bgRadius="6" stroke1Radius="6" stroke2Radius="6"
+	
+	stroke1Px="2" stroke2Px="1"
+	
+	imageStrokePx="3"
+	
+	htmlFieldWidth="300"
+		
+></settings_slider>
+
+<settings_menu
+	
+	bgWidth="457" bgHeight="23"
+	
+	maskHeight="123"
+	
+	butHeight="23"
+	
+	butDistance="2"
+		
+></settings_menu>
+
+<news title="Advanced News Reader 02" date="12.11.09" time="19:15" picture="images/1.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor.]]></description>
+	</news>
+	
+	<news title="Party like it's not 2008: Golden Globes return" date="30.12.08" time="02:11" picture="images/2.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. ]]></description>
+	</news>
+	
+	<news title="News with no picture" date="" time="" picture="images/53.jpg" buttonText="" url="" target="">	
+		<description><![CDATA[Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, Fusce nec nisi vitae turpis mattis tempor.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam.]]></description>
+	</news>
+	
+	
+	
+	
+	
+	<news title="Lawmakers, Muslims criticize prince over comments" date="03.09.08" time="11:20" picture="images/4.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ orem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem.]]></description>
+	</news>
+	
+	<news title="Snowstorm ices roads" date="05.01.09" time="02:12" picture="images/5.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ]]></description>
+	</news>
+	
+	<news title="Cardinals stun Panthers" date="12.11.09" time="19:15" picture="images/6.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.  vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada]]></description>
+	</news>
+	
+	<news title="Wild-card Ravens, rookie" date="12.10.09" time="19:15" picture="images/1.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscin Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada]]></description>
+	</news>
+	
+	<news title="Obama: $350b bailout needs to help people" date="12.11.09" time="19:15" picture="images/2.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscinet, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.lam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada]]></description>
+	</news>
+	
+	<news title="Senate to consider expanding wilderness protection" date="12.11.09" time="19:15" picture="images/3.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, coliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuadaMorbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada]]></description>
+	</news>
+	
+	
+	<news title="Bush legacy  - grim times, gloomy nation " date="12.11.09" time="19:15" picture="images/4.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt aceget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada]]></description>
+	</news>
+	
+	<news title="Storm sinks Indonesian ferry" date="12.11.09" time="19:15" picture="images/5.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt 
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuadaMorbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada]]></description>
+	</news>
+	
+	<news title="GOP urging restraint in stimulus debate" date="12.11.09" time="19:15" picture="images/1.jpg" buttonText="Read More" url="http://www.google.com/" target="_blank">	
+		<description><![CDATA[ Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris. aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed ante pede, semper eget, aliquet et, malesuada molestie, neque. Duis pellentesque ligula ut sem. Donec aliquam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sollicitudin congue lectus. Fusce nec nisi vitae turpis mattis tempor. Etiam blandit dapibus nibh. Duis vehicula aliquet sem. Morbi dictum pulvinar nunc. Quisque dui arcu, euismod imperdiet, tincidunt ac, commodo imperdiet, mauris.
+Phasellus porttitor mauris ac felis. Vestibulum quis dui a dui hendrerit blandit. Nullam vestibulum. Praesent consectetuer augue nec risus. Etiam sollicitudin congue purus. Nullam velit leo, dignissim ac, blandit quis, volutpat at, velit. Suspendisse iaculis pellentesque dolor. Duis risus quam, aliquet eget, volutpat non, porttitor sed, sapien. Suspendisse potenti. Donec semper, elit quis malesuada]]></description>
+	</news>
+	
+</NEWS_READER>

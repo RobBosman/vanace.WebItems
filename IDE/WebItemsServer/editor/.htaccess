@@ -1,0 +1,22 @@
+# Zorg ervoor dat swf- en html-bestanden maximaal een uur (60x60 = 3600 seconden) worden gecachet.
+<FilesMatch "WebItems.*\.(swf|html)$">
+    # Header set Cache-Control "max-age=3600"
+    Header set Cache-Control "max-age=0"
+</FilesMatch>
+
+AuthType Basic
+AuthName "WebItems"
+#AuthUserFile /home/w4252545/domains/web.vanace.nl/.htpasswd/.protected.list
+AuthUserFile C:/Progs/Wamp/www/webitems/.htpassword/.protected.list
+Require valid-user
+
+<IfModule mod_rewrite.c>
+    Options -Indexes +FollowSymlinks
+    RewriteEngine On
+    RewriteBase /webitems/editor/
+	
+    # Rewrite any URL containing a site name (e.g. '/webitems/editor/elsvanwijnen' to '/webitems/editor/WebItems.html').
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^/]+)$ WebItems.html [NC,L]
+</IfModule>

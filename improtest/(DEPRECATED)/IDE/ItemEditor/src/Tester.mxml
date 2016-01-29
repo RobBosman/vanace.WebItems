@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="library://ns.adobe.com/flex/halo" xmlns:fx="http://ns.adobe.com/mxml/2009"
+				initialize="init()">
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+
+			[Bindable]
+			private var startpagina:String;
+
+			private function init():void {
+				startpagina = FlexGlobals.topLevelApplication.parameters['startpagina'];
+			}
+		]]>
+	</fx:Script>
+	<mx:Form>
+		<mx:FormItem label="Startpagina: ">
+			<mx:Label text="'{startpagina}'"/>
+		</mx:FormItem>
+	</mx:Form>
+</mx:Application>

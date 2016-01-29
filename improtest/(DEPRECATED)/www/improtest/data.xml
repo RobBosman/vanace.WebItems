@@ -1,0 +1,13 @@
+<NEWS_READER>
+	<settings_slider stroke2Radius="6" stroke1Radius="6" totalWidth="479" stroke1Color="0x1f1f1f" imageStrokePx="3" stroke2Color="0x575757" stroke1Px="2" htmlFieldWidth="300" totalHeight="191" bgRadius="6" bgColor="0x000000" stroke2Px="1"/>
+	<settings_menu bgHeight="23" butDistance="2" bgWidth="300" maskHeight="75" butHeight="23"/>
+	<news target="_blank" time="12:02" date="23-03-2010" buttonText="Naar de site" picture="(geen afbeelding)" title="Agenda" url="">
+		<description>Op deze pagina een overzicht van de belangrijkste activiteiten van Improtheater van de komende twee maanden. Niet alle activiteiten zijn openbaar en soms is de omschrijving van de klant bewust wat vaag gehouden. Kijk onderin in de lijst of scroll naar links en rechts. En kom regelmatig terug om te kijken waar ik mee bezig ben.</description>
+	</news>
+	<news target="_blank" time="17:05" title="november 2010, training bij een rijksdienst" buttonText="Naar de site" picture="(geen afbeelding)" date="29-08-2010" url="">
+		<description>In november speel ik, in opdracht van &lt;font color="#4A92B4"&gt;&lt;u&gt;&lt;a href="http://www.speel.nl/" target="_blank"&gt;Barbara Oppelaar&lt;/a&gt;&lt;/u&gt;&lt;/font&gt; in een serie voorstellingen voor een dienst van het rijk. Het thema van de serie is de implementatie van een nieuw computersysteem voor de personeelsdossiers. Door regietheater en speelse sc&#xe8;nes stellen we dat thema aan de orde. Een goed voorbeeld van het op maat gemaakt theater waar improvisatie zo geschikt voor is.</description>
+	</news>
+	<news target="_blank" time="09:17" title="november 2010, impro voor middelbare scholieren" buttonText="Naar de site" picture="(geen afbeelding)" date="07-10-2010" url="">
+		<description>De leerlingen van &lt;font color="#4A92B4"&gt;&lt;u&gt;&lt;a href="http://hl.mcvo.nl/" target="_blank"&gt;het Hoogelandt college in Amersfoort&lt;/a&gt;&lt;/u&gt;&lt;/font&gt;</description>
+	</news>
+</NEWS_READER>
